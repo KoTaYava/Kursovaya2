@@ -41,6 +41,7 @@ class JavaQuestionServiceTest {
         mockQuestions.add(new Question("Q2", "A2"));
 
 
+
         JavaQuestionService questionServiceMock = spy(questionService);
         doReturn(mockQuestions).when(questionServiceMock).getAll();
 
