@@ -20,7 +20,6 @@ class ExaminerServiceImplTest {
 
     @Test
     void testGetQuestions() {
-
         // Создание мок-коллекции вопросов
         Collection<Question> mockQuestions = createMockQuestions();
 
