@@ -1,9 +1,13 @@
 package com.example.Kursovaya2;
 
-import java.util.Collection;
-import java.util.Random;
+import org.springframework.stereotype.Service;
 
+import java.util.*;
+
+@Service
 public class ExaminerServiceImpl implements ExaminerService{
+
+
     Random random;
 
     QuestionService questionService;
@@ -13,6 +17,20 @@ public class ExaminerServiceImpl implements ExaminerService{
     }
     @Override
     public Collection<Question> getQuestions(int amount) {
-        return null;
+        Collection<Question> allQuestions = questionService.getAll();
+        if (amount > allQuestions.size()) {
+            throw new NotEnoughQuestionsException();
+        }
+
+        if (amount == allQuestions.size()) {
+            return allQuestions;
+
+        }
+        Set<Question> questions = new HashSet<>();
+        while (questions.size() < amount) {
+            questions.add(questionService.getRandomQuestion());
+        }
+        return questions;
     }
 }
+
