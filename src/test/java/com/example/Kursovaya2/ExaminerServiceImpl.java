@@ -27,7 +27,7 @@ class ExaminerServiceImplTest {
         when(questionService.getAll()).thenReturn(mockQuestions);
 
         // Вызов метода getQuestions с заданным количеством вопросов
-        int amount = 5;
+        int amount = 2;
         Collection<Question> result = examinerService.getQuestions(amount);
 
         // Проверка, что результат не равен null и проверка размера результата

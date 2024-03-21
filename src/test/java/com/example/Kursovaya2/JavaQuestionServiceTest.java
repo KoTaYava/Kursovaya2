@@ -18,7 +18,7 @@ class JavaQuestionServiceTest {
 
     @Test
     void testAddAndGetAll() {
-        Question question = new Question("What is 1+1?", "2");
+        Question question = new Question("Сколько будет 1+1", "2");
         questionService.add(question);
         Collection<Question> allQuestions = questionService.getAll();
         assertTrue(allQuestions.contains(question));
@@ -26,7 +26,7 @@ class JavaQuestionServiceTest {
 
     @Test
     void testRemove() {
-        Question question = new Question("What is the capital of France?", "Paris");
+        Question question = new Question("Столица Фрации?", "Париж");
         questionService.add(question);
         questionService.remove(question);
         Collection<Question> allQuestions = questionService.getAll();
@@ -35,18 +35,15 @@ class JavaQuestionServiceTest {
 
     @Test
     void testGetRandomQuestion() {
-        // Create a mock Set of Questions
-        Set<Question> mockQuestions = new HashSet<>();
-        mockQuestions.add(new Question("Q1", "A1"));
-        mockQuestions.add(new Question("Q2", "A2"));
+        Question q1 = new Question("Q1", "A1");
+        Question q2 = new Question("Q2", "A2");
 
+        questionService.add(q1);
+        questionService.add(q2);
 
+        Set<Question> allQuestions = new HashSet<>(questionService.getAll());
 
-        JavaQuestionService questionServiceMock = spy(questionService);
-        doReturn(mockQuestions).when(questionServiceMock).getAll();
-
-
-        Question randomQuestion = questionServiceMock.getRandomQuestion();
-        assertTrue(mockQuestions.contains(randomQuestion));
+        Question randomQuestion = questionService.getRandomQuestion();
+        assertTrue(allQuestions.contains(randomQuestion));
     }
 }
